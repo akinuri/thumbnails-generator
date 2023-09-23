@@ -13,7 +13,7 @@
     <div class="flex items-center gap-2">
         <span class="inline-block w-16">Video</span>
         <span>:</span>
-        <input type="file" id="file-input">
+        <input type="file" id="video-input">
     </div>
     
     <div class="flex items-center gap-2">
@@ -25,7 +25,11 @@
     </div>
     
     <div>
-        <canvas class="bg-white shadow" id="preview-canvas"></canvas>
+        <canvas
+            class="bg-white shadow"
+            id="seek-preview"
+            data-width="300"
+            ></canvas>
     </div>
     
     <div>
@@ -34,8 +38,10 @@
     
 </div>
 
+<script src="on.js"></script>
 <script src="element.js"></script>
 <script src="utils.js"></script>
+<script src="main.utils.js"></script>
 <script src="main.js"></script>
 
 </body>
