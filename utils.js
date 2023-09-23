@@ -45,3 +45,21 @@ function downloadViaAnchor(url, filename) {
     URL.revokeObjectURL(url);
 }
 
+function throttle(callback, delay = 1000) {
+    var timeoutHandle = null;
+    let throttleInner = function throttleInner() {
+        let passedArgs = Array.from(arguments);
+        if (timeoutHandle == null) {
+            // NOTE: should the first call wait for the delay?
+            timeoutHandle = setTimeout(function () {
+                callback.apply(this, passedArgs);
+                timeoutHandle = null;
+            }.bind(this), delay || 1000);
+        }
+    };
+    if (!(this instanceof Window)) {
+        throttleInner = throttleInner.bind(this);
+    }
+    return throttleInner;
+}
+

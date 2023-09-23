@@ -5,17 +5,23 @@ let video        = elem("video");
 let seekPreview  = qs("#seek-preview");
 let downloadButton = qs("#download-button");
 
+let markCount = 6;
+seekPreview.width = 400;
+seekPreview.height = 200;
+
 on(videoInput, "input", () => {
     loadVideoFromFileInput(video, videoInput, () => {
+        updateSeekbar();
         let heightRatio = video.videoHeight / video.videoWidth;
         seekPreview.width  = seekPreview.dataset.width;
         seekPreview.height = (seekPreview.dataset.width * heightRatio);
-        video.currentTime = video.duration / 2;
-        setTimeout(() => {
-            drawFrameFromVideo(video, seekPreview);
-        }, 100);
+        drawSpecificFrameFromVideo(video, seekPreview, 0);
     });
 });
+
+on(seekbar, "input", throttle(() => {
+    drawSpecificFrameFromVideo(video, seekPreview, seekbar.value);
+}, 500));
 
 on(downloadButton, "click", () => {
     let blankDataURL = "data:,";
@@ -27,21 +33,4 @@ on(downloadButton, "click", () => {
     }
 });
 
-
-let videoLength = 60;
-let markCount   = 6;
-let stepLength  = videoLength / (markCount);
-
-let marksValues = range(0, videoLength, stepLength);
-marksValues = marksValues.map(value => Math.round(value));
-
-seekbar.max   = videoLength;
-seekbar.value = Math.round(videoLength / 2);
-
-seekbarMarks.innerHTML = null;
-marksValues.forEach(value => {
-    seekbarMarks.append(
-        elem("option", value)
-    );
-});
 
