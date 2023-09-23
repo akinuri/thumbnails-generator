@@ -14,3 +14,13 @@ function drawFrameFromVideo(video, canvas) {
     context.drawImage(video, 0, 0, canvas.width, canvas.height);
 }
 
+function getVideoFrameAsDataURL(video) {
+    let canvas = elem("canvas");
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    let context = canvas.getContext("2d");
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    let dataURL = canvas.toDataURL();
+    return dataURL;
+}
+
