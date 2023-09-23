@@ -1,6 +1,7 @@
 let videoInput   = qs("#video-input");
 let seekbar      = qs("#seekbar");
 let seekbarMarks = qs("#seekbar-marks");
+let timestamp    = qs("#timestamp");
 let video        = elem("video");
 let seekPreview  = qs("#seek-preview");
 let downloadButton = qs("#download-button");
@@ -21,7 +22,8 @@ on(videoInput, "input", () => {
 
 on(seekbar, "input", throttle(() => {
     drawSpecificFrameFromVideo(video, seekPreview, seekbar.value);
-}, 500));
+    timestamp.textContent = durToStr(secToDur(seekbar.value));
+}, 250));
 
 on(downloadButton, "click", () => {
     let blankDataURL = "data:,";

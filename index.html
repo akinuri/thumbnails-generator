@@ -19,8 +19,15 @@
     <div class="flex items-center gap-2">
         <span class="inline-block w-16">Seekbar</span>
         <span>:</span>
-        <input type="range" id="seekbar" class="w-40" list="seekbar-marks" min="0" step="1">
-        <span>00:00</span>
+        <input
+            type="range"
+            id="seekbar"
+            class="w-64"
+            list="seekbar-marks"
+            min="0"
+            step="1"
+            >
+        <span id="timestamp">00:00</span>
         <datalist id="seekbar-marks"></datalist>
     </div>
     
@@ -43,6 +50,7 @@
 
 <script src="on.js"></script>
 <script src="element.js"></script>
+<script src="duration.js"></script>
 <script src="utils.js"></script>
 <script src="main.utils.js"></script>
 <script src="main.js"></script>

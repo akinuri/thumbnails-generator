@@ -33,7 +33,7 @@ function updateSeekbar() {
     stepLength  = Math.floor(video.duration) / markCount;
     marksValues = range(0, video.duration, stepLength);
     marksValues = marksValues.map(value => Math.round(value));
-    seekbar.max   = video.duration;
+    seekbar.max = video.duration;
     seekbar.value = 0;
     seekbarMarks.innerHTML = null;
     marksValues.forEach(value => seekbarMarks.append(elem("option", value)));
